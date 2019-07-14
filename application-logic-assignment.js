@@ -11,7 +11,6 @@
  * @returns {boolean} `true` if the number is odd, `false` if the number is even
  */
 function isOdd(n) {
-  return n % 2 == 1;
 }
 
 /**
@@ -27,7 +26,6 @@ function isOdd(n) {
  * @returns {number} the temperature in degrees fahrenheight
  */
 function convertCelciusToFahrenheit(celcius) {
-  return celcius * (9 / 5) + 32;
 }
 
 /**
@@ -45,7 +43,6 @@ function convertCelciusToFahrenheit(celcius) {
  * @returns {number} the circle area
  */
 function calculateCircleArea(radius) {
-  return Math.PI * Math.pow(radius, 2);
 }
 
 /**
@@ -70,9 +67,6 @@ function calculateCircleArea(radius) {
  * @returns {string} in the described format stating the quotient and remainder
  */
 function divideIntegers(a, b) {
-  const quotient = Math.trunc(a / b);
-  const remainder = a % b;
-  return `${a} / ${b} is ${quotient} with remainder ${remainder}`;
 }
 
 /**
@@ -90,9 +84,6 @@ function divideIntegers(a, b) {
  * - OR: 'Sorry, cannot divide by zero'
  */
 function safelyDivideIntegers(a, b) {
-  return (b == 0)
-    ? 'Sorry, cannot divide by zero'
-    : divideIntegers(a, b);
 }
 
 /**
@@ -114,7 +105,6 @@ function safelyDivideIntegers(a, b) {
  * @returns {number} the hypotenuse of the right angle triangle
  */
 function calculateHypotenuse(a, b) {
-  return Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
 }
 
 /**
@@ -139,8 +129,6 @@ function calculateHypotenuse(a, b) {
  * @returns {boolean} true if the triangle can fit in the circle, false otherwise.
  */
 function canTriangleFitInCircle(tiangleSideA, triangleSideB, circleRadius) {
-  const hypotenuse = calculateHypotenuse(tiangleSideA, triangleSideB);
-  return hypotenuse <= circleRadius;
 }
 
 /**
@@ -160,16 +148,6 @@ function canTriangleFitInCircle(tiangleSideA, triangleSideB, circleRadius) {
  * @returns the pin number
  */
 function generatePinNumber() {
-  const min = 10000;
-  const max = 99999;
-
-  let pin = Math.round(Math.random() * (max - min) + min);
-
-  if (isOdd(pin)) {
-    pin = pin + 1;
-  }
-
-  return pin;
 }
 
 /**
@@ -190,19 +168,6 @@ function generatePinNumber() {
  * @param {number} numberOfCents the total amount of money to calculate coin change for
  */
 function calculateCoinChange(numberOfCents) {
-  const quarters = Math.trunc(numberOfCents / 25);
-  const changeAfterQuarters = numberOfCents % 25;
-
-  const dimes = Math.trunc(changeAfterQuarters / 10);
-  const changeAfterDimes = changeAfterQuarters % 10;
-
-  const nickels = Math.trunc(changeAfterDimes / 5);
-  const remainingCents = changeAfterDimes % 5;
-
-  return `${quarters} 25 cent pieces, `
-    + `${dimes} ten cent pieces, `
-    + `${nickels} five cent pieces and `
-    + `${remainingCents} one cent pieces`;
 }
 
 /**
@@ -227,11 +192,6 @@ function calculateCoinChange(numberOfCents) {
  * @returns {string} Saying either `'Hello '` and the user's given name, OR, `'Welcome, please log in'`.
  */
 function greetLoggedInUser(user) {
-  if (user.loggedIn) {
-    return `Hello, ${user.givenName}!`;
-  } else {
-    return `Welcome, please log in`;
-  }
 }
 
 /**
@@ -248,23 +208,6 @@ function greetLoggedInUser(user) {
  * @returns {number} the total bill
  */
 function calculareElectricBill(kwh) {
-  const FIRST_400_RATE = 0.26;
-  const NEXT_600_RATE = 0.32;
-  const RATE_AFTER_600 = 0.37;
-
-  let total = 0;
-
-  if (kwh > 1000) {
-    total = (kwh - 1000) * RATE_AFTER_600;
-    kwh = 1000;
-  }
-
-  if (kwh > 400) {
-    total = total + (kwh - 400) * NEXT_600_RATE;
-    kwh = 400;
-  }
-
-  return total + kwh * FIRST_400_RATE;
 }
 
 /**
@@ -314,15 +257,6 @@ function calculareElectricBill(kwh) {
  * @returns {string} stating if credit is available in the month or has been exceeded
  */
 function doesUserHaveCredit(userAccount) {
-  const creditUsed = userAccount.creditTakenBeginningOfMonth
-    + userAccount.totalChargesInMonth
-    - userAccount.creditsAvailableInMonth;
-
-  if (creditUsed > userAccount.creditLimit) {
-    return 'Credit limit exceeded';
-  } else {
-    return 'Credit available';
-  }
 }
 
 /**
@@ -353,30 +287,4 @@ function doesUserHaveCredit(userAccount) {
  * @returns {Boolean} `true` if the number is a palindrome, `false` otherwise
  */
 function isPalindromeNumber(num) {
-  if (num > 99999 || num < 10000) {
-    return 'Incorrect input';
-  }
-
-  const firstDigit = Math.trunc(num / 10000);
-  const lastDigit = num % 10;
-
-  if (firstDigit !== lastDigit) {
-    return false;
-  }
-
-  // remove first digit
-  num = num % 10000;
-  // remove last digit
-  num = Math.trunc(num / 10);
-  // num is now 3 digits long
-
-  const secondDigit = Math.trunc(num / 100);
-  const secondToLastDigit = num % 10;
-
-  if (secondDigit !== secondToLastDigit) {
-    return false;
-  }
-
-  // all checks passed, we have a palindrome
-  return true;
 }
