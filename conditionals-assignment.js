@@ -15,135 +15,6 @@ function isOdd(n) {
 }
 
 /**
- * @difficulty intermediate, ~5 minutes
- *
- * Write a function that accepts a number representing a temperature in degrees celcius.
- * Convert the celcius to fahrenheight and return the value.
- *
- * HINTS:
- * - the forumular for fahrenheight is to multiply the celcius by nine fifths and then add 32
- *
- * @param {number} celcius degrees in celcius to convert to fahrenheight
- * @returns {number} the temperature in degrees fahrenheight
- */
-function convertCelciusToFahrenheit(celcius) {
-  return celcius * (9 / 5) + 32;
-}
-
-/**
- * @difficulty intermediate, ~5 minutes
- *
- * Write a function that accepts a number representing the radius of a circle.
- * Calculate the and return the area of the circle.
- *
- * HINTS:
- * - The formular for a circle is PI multiplied by the radius squared
- * - You can use the Math's PI property
- * - You can use the Math's method for calculating a power or the exponent operator to calculate the square of the radius
- *
- * @param {number} radius the radius of the circle
- * @returns {number} the circle area
- */
-function calculateCircleArea(radius) {
-  return Math.PI * Math.pow(radius, 2);
-}
-
-/**
- * @difficulty intermediate, ~5 munutes
- *
- * Write a function that accepts 2 numbers, `a` and `b`. Then divide `a` by `b`.
- * Then, return a string in the format:
- *
- * ```js
- * 'a / b is c with remainder r'
- * ```
- *
- * The `c` is the number of times `b` goes into `a` (the quotient) and `r` is the remainder.
- *
- * HINTS:
- * - You can divide numbers using the division operator, `/`
- * - You can remove fractional digits (only the integer part) by using the Math's trunc method
- * - You can calculate the remainder by using the modulo operator
- *
- * @param {number} a the number to be divided
- * @param {number} b the number to divide by
- * @returns {string} in the described format stating the quotient and remainder
- */
-function divideIntegers(a, b) {
-  const quotient = Math.trunc(a / b);
-  const remainder = a % b;
-  return `${a} / ${b} is ${quotient} with remainder ${remainder}`;
-}
-
-/**
- * @difficulty intermediate, ~2 minutes
- *
- * Reuse the same division from the previous drill, `divideIntegers`.
- * In this function, check to ensure that `b` is not `0` before dividing the numbers to prevent a division by zero.
- *
- * If `b` is `0`, return the string `Sorry, cannot divide by zero`.
- *
- * @param {number} a the number to be divided
- * @param {number} b the number to divide by
- * @returns {string} EITHER:
- * - in the described format stating the quotient and remainder
- * - OR: 'Sorry, cannot divide by zero'
- */
-function safelyDivideIntegers(a, b) {
-  return (b == 0)
-    ? 'Sorry, cannot divide by zero'
-    : divideIntegers(a, b);
-}
-
-/**
- * @difficulty intermediate, ~5 minutes
- *
- * Wrie a funcion that accepts two parameters, `a` and `b` representing two sides (lengths) of a right angle triangle.
- * Calculate the hypotenuse of the triangle using the formula:
- *
- * ```
- * a^2 + b^2 = hyp^2
- * ```
- *
- * HINTS:
- * - You can use the Math's power method or exponent operator to calculate the squares of `a` and `b`
- * - You can use the Math's square root method to calculate the hypotenuse once you have the sum of the two squares
- *
- * @param {number} a the length of one side of a right angle triangle
- * @param {number} b the length of the other side of a right angle triangle
- * @returns {number} the hypotenuse of the right angle triangle
- */
-function calculateHypotenuse(a, b) {
-  return Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
-}
-
-/**
- * @difficulty intemediate, ~3 minutes
- *
- * Write a function that accepts 3 arguments,
- * - the first two arguments represent the lengths of the perpendicular sides of a right angle triangle.
- * - the third argument represents the radius of a circle
- *
- * Calculate whether the triangle described by the first two arguments would fit into the circle described by the third argument.
- *
- * Return `true` if the triangle can fit, and `false` otherwise.
- *
- * HINT:
- * - A right angled triangle can fit in a circle if the length of the hypotenuse of the
- * triangle is less than or equal to the length of the radius of the circle
- * - You can make reuse of the `calculateHypotenuse` function within this function
- *
- * @param {number} tiangleSideA the length of one side of a right angle triangle
- * @param {number} triangleSideB the lenth of the other side of a right angle triangle
- * @param {number} circleRadius the radius of a circle
- * @returns {boolean} true if the triangle can fit in the circle, false otherwise.
- */
-function canTriangleFitInCircle(tiangleSideA, triangleSideB, circleRadius) {
-  const hypotenuse = calculateHypotenuse(tiangleSideA, triangleSideB);
-  return hypotenuse <= circleRadius;
-}
-
-/**
  * @difficulty intermediate/hard, ~10 minutes
  *
  * Write a function that can generate a random 5 digit personal identification number (PIN).
@@ -170,39 +41,6 @@ function generatePinNumber() {
   }
 
   return pin;
-}
-
-/**
- * @difficulty intemediate, ~5 minutes
- *
- * Write a function that accepts a value `numberOfCents` representing a number of cents between 0 and 100.
- * Calculate the number of quarters, dimes, nickels and cent coins needed to make the change. Return a string representing this information.
- *
- * For example:
- * if `numberOfCents` is 74, return the string:
- * `'2 25 cent pieces, 2 ten cent pieces, 0 five cent pieces and 4 one cent pieces'`
- *
- * HINTS:
- * - You can use the Math's trunc method to calculate the number of quaters
- * - You can use the modulo operator with `25` to calculate the change remaining after the number of quarters.
- * - You can repeat the process of trunc and modulo for dimes and nickels to create each value needed in the final string.
- *
- * @param {number} numberOfCents the total amount of money to calculate coin change for
- */
-function calculateCoinChange(numberOfCents) {
-  const quarters = Math.trunc(numberOfCents / 25);
-  const changeAfterQuarters = numberOfCents % 25;
-
-  const dimes = Math.trunc(changeAfterQuarters / 10);
-  const changeAfterDimes = changeAfterQuarters % 10;
-
-  const nickels = Math.trunc(changeAfterDimes / 5);
-  const remainingCents = changeAfterDimes % 5;
-
-  return `${quarters} 25 cent pieces, `
-    + `${dimes} ten cent pieces, `
-    + `${nickels} five cent pieces and `
-    + `${remainingCents} one cent pieces`;
 }
 
 /**
@@ -247,7 +85,7 @@ function greetLoggedInUser(user) {
  * @param {number} kwh amount of electricity used in kilowatt hours (KWH)
  * @returns {number} the total bill
  */
-function calculareElectricBill(kwh) {
+function calculateElectricBill(kwh) {
   const FIRST_400_RATE = 0.26;
   const NEXT_600_RATE = 0.32;
   const RATE_AFTER_600 = 0.37;
